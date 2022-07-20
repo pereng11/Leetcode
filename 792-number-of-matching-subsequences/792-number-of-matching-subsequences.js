@@ -10,18 +10,12 @@ var numMatchingSubseq = function(s, words) {
     function checkSubs(word){
         if(word.length > s.length) return false;
         if(visited[word] !== undefined) return visited[word];
-        
-        let idxS = 0;
-        let idxW = 0;
-        let currS = s[idxS];
-        let currW = word[idxW];
-        while(idxS < s.length && idxW < word.length){
-            if(currS === currW){
-                currW = word[++idxW];
-            } 
-            currS = s[++idxS];
+        let idxS = -1;
+        for(let i = 0; i < word.length; i++){
+            idxS = s.indexOf(word[i], idxS+1);
+            if(idxS < 0) break;
         }
-        if(!currW){
+        if(idxS >= 0){
             visited[word] = true;
             return true;
         } else{
