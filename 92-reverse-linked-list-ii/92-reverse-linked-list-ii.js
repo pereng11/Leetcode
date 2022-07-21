@@ -16,7 +16,7 @@ var reverseBetween = function(head, left, right) {
     let idx = 1;
     let tHead = head;
     let tLeft;
-    while(head){
+    while(idx <= right){
         if(idx >= left && idx <=  right){
             const i = getReversedIdx(idx);
             storedVals[i] = head.val;
@@ -28,7 +28,7 @@ var reverseBetween = function(head, left, right) {
     }
     idx = 1;
     head = tHead;
-    while(head){
+    while(idx <= right){
         head.val = storedVals[idx];
         head = head.next;
         idx++;
