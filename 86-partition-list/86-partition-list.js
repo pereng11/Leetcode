@@ -13,26 +13,24 @@
 var partition = function(head, x) {
     if(x < -100 || x > 100 || head === null) return head;
     
-    const lessVals = [];
-    const greaterVals = [];
+    let beforeHead = new ListNode();
+    let afterHead = new ListNode();
+    let before = beforeHead;
+    let after = afterHead;
+    
     while(head){
         const val = head.val;
+        const newNode = new ListNode(val);
         if(val < x){
-            lessVals.push(val);
+            beforeHead.next = newNode;
+            beforeHead = beforeHead.next;
         }else{
-            greaterVals.push(val);
+            afterHead.next = newNode;
+            afterHead = afterHead.next;
         }
         head = head.next;
     }
-    const newSeq = lessVals.concat(greaterVals);
-    let tempHead = new ListNode(newSeq[0]);
-    const newHead = tempHead;
-    for(let i = 1; i < newSeq.length; i++){
-        let val = newSeq[i];
-        let newNode = new ListNode(val);
-        tempHead.next = newNode;
-        tempHead = tempHead.next;
-    }
-    
+    beforeHead.next = after.next;
+    const newHead = before.next;
     return newHead;
 };
