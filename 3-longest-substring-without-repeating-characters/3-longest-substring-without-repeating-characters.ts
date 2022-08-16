@@ -19,9 +19,12 @@ function lengthOfLongestSubstring(s: string): number {
         const isTwice = checkTwice(leftIdx, rightIdx);
       if ( isTwice )
       {
-        const leftVal = s[ leftIdx ];
-        visited[ leftVal ] = false;
-        leftIdx += 1;
+        while (checkTwice(leftIdx, rightIdx))
+        {
+          const leftVal = s[leftIdx];
+                visited[leftVal] = false;
+                leftIdx += 1;
+        }
       } else
       {
         const rightVal = s[rightIdx];
